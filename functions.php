@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // CSSとJavaScriptの読み込み
 function mama_gen_enqueue_scripts() {
-    wp_enqueue_style( 'mama-gen-style', get_stylesheet_uri(), array(), '1.3' );
+    wp_enqueue_style( 'mama-gen-style', get_stylesheet_uri(), array(), '1.4' );
     wp_enqueue_script( 'mama-gen-menu', get_template_directory_uri() . '/js/menu.js', array(), '1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'mama_gen_enqueue_scripts' );

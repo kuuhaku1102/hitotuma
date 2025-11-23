@@ -1046,11 +1046,11 @@ body {
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 70px;
+  min-height: 64px;
 }
 
 .site-branding {
@@ -1059,8 +1059,9 @@ body {
 
 .site-title {
   margin: 0;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .site-title a {
@@ -1119,7 +1120,8 @@ body {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 8px;
+  gap: 4px;
+  align-items: center;
 }
 
 .nav-menu > li {
@@ -1128,12 +1130,14 @@ body {
 
 .nav-menu > li > a {
   display: block;
-  padding: 12px 20px;
+  padding: 10px 16px;
   color: #fff;
   text-decoration: none;
   font-weight: 500;
+  font-size: 15px;
   border-radius: 6px;
   transition: background 0.3s ease;
+  white-space: nowrap;
 }
 
 .nav-menu > li > a:hover {
@@ -1417,11 +1421,11 @@ body {
 @media (max-width: 480px) {
   .header-container {
     padding: 0 16px;
-    min-height: 60px;
+    min-height: 56px;
   }
 
   .site-title {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .main-navigation {
