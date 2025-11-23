@@ -637,3 +637,388 @@ body {
     font-size: 20px;
   }
 }
+
+
+/* ========================================
+   メインコンテンツセクション
+======================================== */
+.main-content-section {
+  margin-bottom: 50px;
+}
+
+.main-content {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  line-height: 1.8;
+}
+
+.content-main-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 30px;
+  padding-bottom: 16px;
+  border-bottom: 4px solid #ff6f91;
+  color: #333;
+  text-align: center;
+}
+
+.content-intro {
+  background: linear-gradient(135deg, #fff5f7 0%, #ffe8f0 100%);
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  border-left: 4px solid #ff6f91;
+}
+
+.content-intro p {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.content-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.content-subtitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 50px 0 24px;
+  padding-left: 16px;
+  border-left: 5px solid #667eea;
+  color: #333;
+}
+
+.main-content > p {
+  margin: 0 0 20px;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* 理由カード */
+.reason-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin: 30px 0 40px;
+}
+
+.reason-card {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+  padding: 30px 24px;
+  border-radius: 12px;
+  border: 2px solid #e0e7ff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reason-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(102,126,234,0.2);
+}
+
+.reason-number {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.reason-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: #333;
+}
+
+.reason-card p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #555;
+  margin: 0;
+}
+
+/* ハイライトボックス */
+.highlight-box {
+  background: linear-gradient(135deg, #fff9e6 0%, #fff4d6 100%);
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px solid #ffd700;
+  margin: 30px 0;
+  text-align: center;
+}
+
+.highlight-text {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.8;
+  color: #333;
+  margin: 0;
+}
+
+/* チェックリスト */
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 30px;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #555;
+}
+
+.check-list li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  background: #4caf50;
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* テクニックセクション */
+.technique-section {
+  margin: 30px 0 40px;
+}
+
+.technique-item {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  border-left: 4px solid #667eea;
+}
+
+.technique-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.technique-label {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.technique-item p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #555;
+  margin: 0 0 16px;
+}
+
+.technique-item p:last-child {
+  margin-bottom: 0;
+}
+
+.sub-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+
+.sub-list li {
+  padding: 8px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* 例文ボックス */
+.example-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  margin: 16px 0;
+}
+
+.example-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #667eea;
+  margin: 0 0 8px;
+}
+
+.example-text {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #333;
+  margin: 0;
+  font-style: italic;
+}
+
+/* 警告リスト */
+.warning-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 30px 0;
+}
+
+.warning-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: 8px;
+  border: 2px solid #f0f0f0;
+  font-size: 15px;
+  color: #555;
+  transition: border-color 0.2s ease;
+}
+
+.warning-item:hover {
+  border-color: #ff6f91;
+}
+
+.warning-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.safety-note {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  padding: 20px 24px;
+  border-radius: 8px;
+  border-left: 4px solid #4caf50;
+  font-size: 15px;
+  color: #2e7d32;
+  margin: 30px 0;
+}
+
+/* CTAボックス */
+.cta-box {
+  background: linear-gradient(135deg, #ff6f91 0%, #ff9671 100%);
+  padding: 40px 30px;
+  border-radius: 16px;
+  text-align: center;
+  margin-top: 50px;
+  box-shadow: 0 8px 24px rgba(255,111,145,0.3);
+}
+
+.cta-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 16px;
+}
+
+.cta-text {
+  font-size: 16px;
+  color: rgba(255,255,255,0.95);
+  margin: 0;
+  line-height: 1.8;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 30px 20px;
+  }
+
+  .content-main-title {
+    font-size: 26px;
+  }
+
+  .content-subtitle {
+    font-size: 20px;
+    margin: 40px 0 20px;
+  }
+
+  .content-intro {
+    padding: 20px;
+  }
+
+  .reason-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .technique-item {
+    padding: 20px;
+  }
+
+  .technique-title {
+    font-size: 18px;
+  }
+
+  .cta-box {
+    padding: 30px 20px;
+  }
+
+  .cta-title {
+    font-size: 24px;
+  }
+
+  .cta-text {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 24px 16px;
+  }
+
+  .content-main-title {
+    font-size: 22px;
+  }
+
+  .content-subtitle {
+    font-size: 18px;
+    padding-left: 12px;
+  }
+
+  .content-intro {
+    padding: 16px;
+  }
+
+  .reason-card {
+    padding: 20px 16px;
+  }
+
+  .technique-item {
+    padding: 16px;
+  }
+
+  .highlight-box {
+    padding: 20px 16px;
+  }
+
+  .highlight-text {
+    font-size: 16px;
+  }
+}
