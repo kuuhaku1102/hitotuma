@@ -1039,8 +1039,6 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  width: 100%;
-  overflow-x: hidden;
 }
 
 .header-container {
@@ -1305,8 +1303,6 @@ body {
   margin: 0 auto;
   padding: 40px 20px;
   min-height: calc(100vh - 200px);
-  width: 100%;
-  overflow-x: hidden;
 }
 
 /* ========================================
