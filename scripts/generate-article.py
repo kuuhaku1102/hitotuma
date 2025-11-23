@@ -11,8 +11,17 @@ import json
 from datetime import datetime
 from openai import OpenAI
 
-# keyword-managerをインポート
-from keyword_manager import get_unused_combination, generate_title, generate_prompt
+# 同じディレクトリのスクリプトをインポート
+import importlib.util
+import os as os_module
+
+spec = importlib.util.spec_from_file_location("keyword_manager", os.path.join(os.path.dirname(__file__), "keyword-manager.py"))
+keyword_manager = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(keyword_manager)
+
+get_unused_combination = keyword_manager.get_unused_combination
+generate_title = keyword_manager.generate_title
+generate_prompt = keyword_manager.generate_prompt
 
 # OpenAI APIクライアントの初期化（環境変数から自動設定）
 client = OpenAI()

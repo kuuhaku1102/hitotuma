@@ -184,3 +184,18 @@ function mama_gen_template_include( $template ) {
     return $template;
 }
 add_filter( 'template_include', 'mama_gen_template_include' );
+
+// ブログページのリライトルールを追加
+function mama_gen_add_blog_rewrite_rules() {
+    add_rewrite_rule(
+        '^blog/?$',
+        'index.php?post_type=post',
+        'top'
+    );
+    add_rewrite_rule(
+        '^blog/page/([0-9]{1,})/?$',
+        'index.php?post_type=post&paged=$matches[1]',
+        'top'
+    );
+}
+add_action( 'init', 'mama_gen_add_blog_rewrite_rules' );
