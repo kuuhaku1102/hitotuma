@@ -97,6 +97,44 @@ get_header();
     </section>
   <?php endif; ?>
 
+
+  <!-- 女性一覧セクション -->
+  <?php if ( ! empty( $girls ) ) : ?>
+    <section class="girls-list">
+      <h2 class="section-title"><?php echo esc_html( $prefecture_name ); ?>の女性一覧</h2>
+      <div class="girls-grid">
+        <?php foreach ( $girls as $girl ) : ?>
+          <article class="girl-card">
+            <?php if ( ! empty( $girl->image_url ) ) : ?>
+              <div class="girl-image">
+                <img src="<?php echo esc_url( $girl->image_url ); ?>" alt="<?php echo esc_attr( $girl->name ); ?>">
+              </div>
+            <?php endif; ?>
+            <div class="girl-info">
+              <h3 class="girl-name"><?php echo esc_html( $girl->name ); ?></h3>
+              <?php if ( ! empty( $girl->age ) ) : ?>
+                <p class="girl-age">年齢: <?php echo esc_html( $girl->age ); ?>歳</p>
+              <?php endif; ?>
+              <?php if ( ! empty( $girl->area ) ) : ?>
+                <p class="girl-area">エリア: <?php echo esc_html( $girl->area ); ?></p>
+              <?php endif; ?>
+              <?php if ( ! empty( $girl->comment ) ) : ?>
+                <p class="girl-comment"><?php echo esc_html( wp_trim_words( $girl->comment, 30, '...' ) ); ?></p>
+              <?php endif; ?>
+              <?php if ( ! empty( $girl->profile_url ) ) : ?>
+                <a href="<?php echo esc_url( $girl->profile_url ); ?>" class="girl-link" target="_blank" rel="noopener">プロフィールを見る</a>
+              <?php endif; ?>
+            </div>
+          </article>
+        <?php endforeach; ?>
+      </div>
+    </section>
+  <?php else : ?>
+    <section class="no-girls">
+      <p>現在、<?php echo esc_html( $prefecture_name ); ?>の女性情報はありません。</p>
+      <p><a href="<?php echo esc_url( home_url( '/' ) ); ?>">トップページに戻る</a></p>
+    </section>
+  <?php endif; ?>
   <!-- 都道府県別SEOコンテンツ -->
   <section class="prefecture-seo-content">
     <h2 class="prefecture-seo-title">💕 <?php echo esc_html( $prefecture_name ); ?>で人妻と出会いたい男性へ</h2>
@@ -205,44 +243,6 @@ get_header();
       あなたのペースでやり取りを始めてみてください。</p>
     </div>
   </section>
-
-  <!-- 女性一覧セクション -->
-  <?php if ( ! empty( $girls ) ) : ?>
-    <section class="girls-list">
-      <h2 class="section-title"><?php echo esc_html( $prefecture_name ); ?>の女性一覧</h2>
-      <div class="girls-grid">
-        <?php foreach ( $girls as $girl ) : ?>
-          <article class="girl-card">
-            <?php if ( ! empty( $girl->image_url ) ) : ?>
-              <div class="girl-image">
-                <img src="<?php echo esc_url( $girl->image_url ); ?>" alt="<?php echo esc_attr( $girl->name ); ?>">
-              </div>
-            <?php endif; ?>
-            <div class="girl-info">
-              <h3 class="girl-name"><?php echo esc_html( $girl->name ); ?></h3>
-              <?php if ( ! empty( $girl->age ) ) : ?>
-                <p class="girl-age">年齢: <?php echo esc_html( $girl->age ); ?>歳</p>
-              <?php endif; ?>
-              <?php if ( ! empty( $girl->area ) ) : ?>
-                <p class="girl-area">エリア: <?php echo esc_html( $girl->area ); ?></p>
-              <?php endif; ?>
-              <?php if ( ! empty( $girl->comment ) ) : ?>
-                <p class="girl-comment"><?php echo esc_html( wp_trim_words( $girl->comment, 30, '...' ) ); ?></p>
-              <?php endif; ?>
-              <?php if ( ! empty( $girl->profile_url ) ) : ?>
-                <a href="<?php echo esc_url( $girl->profile_url ); ?>" class="girl-link" target="_blank" rel="noopener">プロフィールを見る</a>
-              <?php endif; ?>
-            </div>
-          </article>
-        <?php endforeach; ?>
-      </div>
-    </section>
-  <?php else : ?>
-    <section class="no-girls">
-      <p>現在、<?php echo esc_html( $prefecture_name ); ?>の女性情報はありません。</p>
-      <p><a href="<?php echo esc_url( home_url( '/' ) ); ?>">トップページに戻る</a></p>
-    </section>
-  <?php endif; ?>
 
   <!-- 他の都道府県へのリンク -->
   <section class="other-prefectures">
