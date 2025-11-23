@@ -97,6 +97,115 @@ get_header();
     </section>
   <?php endif; ?>
 
+  <!-- 都道府県別SEOコンテンツ -->
+  <section class="prefecture-seo-content">
+    <h2 class="prefecture-seo-title">💕 <?php echo esc_html( $prefecture_name ); ?>で人妻と出会いたい男性へ</h2>
+    
+    <div class="prefecture-seo-intro">
+      <p><?php echo esc_html( $prefecture_name ); ?>で落ち着いた大人の女性と自然な関係を築きたい—<br>
+そんな男性に人気なのが、<strong>"人妻カテゴリーに特化したマッチング・掲示板サービス"</strong>です。</p>
+      
+      <p>このページでは、<?php echo esc_html( $prefecture_name ); ?>で人妻とつながりたい方へ向けて、</p>
+      <ul class="intro-list">
+        <li>どんな女性が多いか</li>
+        <li>どのカテゴリを使えば出会いやすいか</li>
+        <li>反応率が上がるメッセージ方法</li>
+      </ul>
+      <p>などをわかりやすく解説します。</p>
+    </div>
+
+    <h3 class="prefecture-seo-subtitle">📍 <?php echo esc_html( $prefecture_name ); ?>では「目的の合う人妻」を探しやすい</h3>
+    
+    <p>人妻カテゴリーが選ばれる理由は、地域に関係なくシンプルです。</p>
+
+    <div class="feature-boxes">
+      <div class="feature-box">
+        <h4 class="feature-box-title">● 同じ目的の女性だけが集まっている</h4>
+        <p>「まずは話したい」「大人の相談をしたい」など<br>
+        目的が近い女性が多いため、自然な流れでやり取りが始められます。</p>
+      </div>
+
+      <div class="feature-box">
+        <h4 class="feature-box-title">● 匿名で利用できて安心</h4>
+        <p>本名や個人情報は公開されず、安心してメッセージを続けられます。</p>
+      </div>
+
+      <div class="feature-box">
+        <h4 class="feature-box-title">● 生活スタイルに合う相手を探しやすい</h4>
+        <p>昼・夜・土日など、自分の生活時間に合った女性と繋がりやすいのが特徴です。</p>
+      </div>
+    </div>
+
+    <h3 class="prefecture-seo-subtitle">✨ <?php echo esc_html( $prefecture_name ); ?>で人妻と出会うコツ</h3>
+    
+    <p>どの地域でも共通して反応が良いアプローチ方法をご紹介します。</p>
+
+    <div class="tips-section">
+      <div class="tip-item">
+        <h4 class="tip-title"><span class="tip-number">1</span>自己紹介は"シンプル & 丁寧"</h4>
+        <p>人妻カテゴリでは派手さより安心感が重要。</p>
+        <ul class="tip-list">
+          <li>活動しやすい時間帯</li>
+          <li>軽く話したい目的</li>
+          <li>住んでいる大まかなエリア</li>
+        </ul>
+        <p>だけ書けば十分。</p>
+      </div>
+
+      <div class="tip-item">
+        <h4 class="tip-title"><span class="tip-number">2</span>最初のメッセージは短めで誠実に</h4>
+        <div class="message-example">
+          <p class="example-label">例文：</p>
+          <p class="example-text">「はじめまして。落ち着いた雰囲気の方だと思い、メッセージしました。よければ少しお話ししませんか？」</p>
+        </div>
+        <p>どの県でも共通して好印象を持たれる定番パターンです。</p>
+      </div>
+
+      <div class="tip-item">
+        <h4 class="tip-title"><span class="tip-number">3</span>急な誘いは避け、会話の流れを大切に</h4>
+        <p>人妻ユーザーは<strong>"安心できる男性"</strong>を重視するため、<br>
+        焦らず、丁寧なコミュニケーションが成功率を高めます。</p>
+      </div>
+    </div>
+
+    <h3 class="prefecture-seo-subtitle">📋 <?php echo esc_html( $prefecture_name ); ?>で人気の人妻向けカテゴリ</h3>
+    
+    <p>地域差が出ないように<strong>"全エリア共通で使えるカテゴリ名"</strong>に統一しています。</p>
+
+    <div class="category-list">
+      <div class="category-item">
+        <span class="category-icon">💝</span>
+        <span class="category-name">人妻・既婚女性掲示板</span>
+      </div>
+      <div class="category-item">
+        <span class="category-icon">💬</span>
+        <span class="category-name">大人の恋活・相談カテゴリ</span>
+      </div>
+      <div class="category-item">
+        <span class="category-icon">✉️</span>
+        <span class="category-name">雑談・メッセージ中心カテゴリ</span>
+      </div>
+      <div class="category-item">
+        <span class="category-icon">⚡</span>
+        <span class="category-name">すぐ話したい即レス掲示板</span>
+      </div>
+      <div class="category-item">
+        <span class="category-icon">📍</span>
+        <span class="category-name">地域別掲示板（<?php echo esc_html( $prefecture_name ); ?>版）</span>
+      </div>
+    </div>
+
+    <p class="category-note"><?php echo esc_html( $prefecture_name ); ?>版の地域別掲示板から閲覧するだけでも、目的の近い女性を見つけやすくなります。</p>
+
+    <div class="prefecture-summary">
+      <h3 class="summary-title">📌 まとめ：<?php echo esc_html( $prefecture_name ); ?>でも人妻との出会いは十分可能</h3>
+      <p><?php echo esc_html( $prefecture_name ); ?>で人妻との出会いを探す男性にとって、<br>
+      <strong>"同じ目的の女性が集まる"掲示板・マッチングサービスは非常に効率的</strong>です。</p>
+      <p>まずは気軽に掲示板をチェックして、<br>
+      あなたのペースでやり取りを始めてみてください。</p>
+    </div>
+  </section>
+
   <!-- 女性一覧セクション -->
   <?php if ( ! empty( $girls ) ) : ?>
     <section class="girls-list">
