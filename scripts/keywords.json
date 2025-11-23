@@ -1,0 +1,82 @@
+{
+  "main_keywords": [
+    "不倫募集掲示板",
+    "セカンドパートナー探し",
+    "既婚者向けマッチング",
+    "大人の関係募集",
+    "秘密の恋人探し",
+    "結婚してるけど恋愛したい",
+    "家庭外恋愛",
+    "割り切った関係",
+    "婚外恋愛パートナー",
+    "プラトニックな関係"
+  ],
+  "sub_keywords": [
+    "40代",
+    "50代",
+    "安全性",
+    "初心者",
+    "体験談",
+    "注意点",
+    "成功のコツ",
+    "身バレしない方法",
+    "女性向け",
+    "男性向け",
+    "地方",
+    "都会",
+    "料金",
+    "無料",
+    "アプリとの違い",
+    "長続きさせる秘訣",
+    "罪悪感",
+    "メリット・デメリット",
+    "Q&A",
+    "おすすめ",
+    "口コミ・評判"
+  ],
+  "article_types": [
+    {
+      "type": "usage",
+      "title_pattern": "{main_keyword}の賢い使い方｜{sub_keyword}向け完全ガイド"
+    },
+    {
+      "type": "experience",
+      "title_pattern": "【体験談】私が{main_keyword}で{sub_keyword}を見つけた話"
+    },
+    {
+      "type": "qa",
+      "title_pattern": "{main_keyword}のよくある質問｜{sub_keyword}の疑問を解決Q&A"
+    },
+    {
+      "type": "ranking",
+      "title_pattern": "{main_keyword}おすすめランキング｜{sub_keyword}で選ぶベスト5"
+    },
+    {
+      "type": "comparison",
+      "title_pattern": "{main_keyword}とアプリの違いは？{sub_keyword}で徹底比較"
+    },
+    {
+      "type": "safety",
+      "title_pattern": "{main_keyword}の安全性｜{sub_keyword}で身バレしないための注意点"
+    },
+    {
+      "type": "beginner",
+      "title_pattern": "初心者必見！{main_keyword}で{sub_keyword}を始めるためのステップ"
+    },
+    {
+      "type": "advanced",
+      "title_pattern": "{main_keyword}上級者向け｜{sub_keyword}を活用した効果的な方法"
+    },
+    {
+      "type": "psychology",
+      "title_pattern": "{main_keyword}の心理学｜{sub_keyword}が求める関係性とは"
+    },
+    {
+      "type": "future",
+      "title_pattern": "{main_keyword}の未来｜{sub_keyword}との関係を長続きさせる秘訣"
+    }
+  ],
+  "used_combinations": [
+    "既婚者向けマッチング_おすすめ_future"
+  ]
+}

@@ -29,6 +29,7 @@
     <nav class="main-navigation" id="main-navigation">
       <ul class="nav-menu">
         <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">トップ</a></li>
+        <li><a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>">ブログ</a></li>
         
         <!-- 都道府県メニュー -->
         <li class="menu-item-has-children">
