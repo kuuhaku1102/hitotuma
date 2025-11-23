@@ -274,17 +274,19 @@ body {
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
 .girl {
-  display: flex;
-  gap: 24px;
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
-  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
 }
 
 .girl:hover {
@@ -293,8 +295,7 @@ body {
 }
 
 .girl-thumb {
-  flex-shrink: 0;
-  width: 280px;
+  width: 100%;
   height: 280px;
   overflow: hidden;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -1813,17 +1814,19 @@ body {
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
 .girl {
-  display: flex;
-  gap: 24px;
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
-  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
 }
 
 .girl:hover {
@@ -1832,8 +1835,7 @@ body {
 }
 
 .girl-thumb {
-  flex-shrink: 0;
-  width: 280px;
+  width: 100%;
   height: 280px;
   overflow: hidden;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -1953,13 +1955,18 @@ body {
 }
 
 /* レスポンシブ対応 */
+@media (max-width: 1024px) {
+  .girls-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
-  .girl {
-    flex-direction: column;
+  .girls-list {
+    grid-template-columns: 1fr;
   }
 
   .girl-thumb {
-    width: 100%;
     height: 240px;
   }
 
