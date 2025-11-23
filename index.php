@@ -108,22 +108,9 @@ $regions = array(
           <div class="prefecture-links">
             <?php foreach ( $region_prefs as $pref ) :
               $pref_slug = mama_gen_prefecture_to_slug( $pref );
-              
-              // 各都道府県の女性数を取得
-              global $wpdb;
-              $table = $wpdb->prefix . 'mama_gen';
-              $count = $wpdb->get_var( 
-                $wpdb->prepare( 
-                  "SELECT COUNT(*) FROM {$table} WHERE post_status = 'publish' AND prefecture = %s",
-                  $pref
-                )
-              );
             ?>
               <a href="<?php echo esc_url( home_url( '/prefecture/' . $pref_slug . '/' ) ); ?>" class="prefecture-link">
                 <?php echo esc_html( $pref ); ?>
-                <?php if ( $count > 0 ) : ?>
-                  <span class="prefecture-count">(<?php echo esc_html( $count ); ?>)</span>
-                <?php endif; ?>
               </a>
             <?php endforeach; ?>
           </div>

@@ -18,6 +18,9 @@ if ( is_admin() ) {
     require_once get_template_directory() . '/admin-customization.php';
 }
 
+// 都道府県初期化を読み込む
+require_once get_template_directory() . '/prefecture-init.php';
+
 // 都道府県タクソノミーを登録
 function mama_gen_register_prefecture_taxonomy() {
     $labels = array(
@@ -96,17 +99,15 @@ function mama_gen_get_prefectures() {
     );
 }
 
-// 都道府県別の女性データを取得する関数
+// 都道府県別の女性データを取得する関数（ランダムで8-12件）
 function mama_gen_get_girls_by_prefecture( $prefecture_name ) {
     global $wpdb;
     $table = $wpdb->prefix . 'mama_gen';
     
-    // prefectureカラムで検索
+    // ランダムで8-12件取得（都道府県条件なし）
+    $random_count = rand(8, 12);
     $girls = $wpdb->get_results( 
-        $wpdb->prepare( 
-            "SELECT * FROM {$table} WHERE post_status = 'publish' AND prefecture = %s ORDER BY id DESC",
-            $prefecture_name
-        )
+        "SELECT * FROM {$table} WHERE post_status = 'publish' ORDER BY RAND() LIMIT {$random_count}"
     );
     
     return $girls;
