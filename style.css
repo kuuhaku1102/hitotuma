@@ -1,77 +1,325 @@
 /*
 Theme Name: Mama Gen Theme
 Theme URI: https://example.com/
-Description: wp_mama_genテーブルの内容を一覧表示するためのシンプルなテーマ。
+Description: 都道府県別人妻出会い掲示板テーマ。SEOコンテンツと地域別一覧表示機能を搭載。
 Author: InfinityDesign
-Version: 1.0
+Version: 2.0
 Text Domain: mama-gen-theme
 */
+
+/* ========================================
+   基本設定
+======================================== */
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "YuGothic", "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   background: #f5f5f5;
   color: #333;
+  line-height: 1.7;
 }
 
 .wrap {
-  max-width: 1100px;
-  margin: 40px auto;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 0 16px 40px;
 }
 
+/* ========================================
+   ヘッダー
+======================================== */
+.site-header {
+  text-align: center;
+  padding: 40px 0 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  margin: 0 -16px 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
 .site-title {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin: 0 0 8px;
+}
+
+.site-title a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.site-title a:hover {
+  opacity: 0.9;
 }
 
 .site-description {
+  font-size: 15px;
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+}
+
+/* ========================================
+   パンくずリスト
+======================================== */
+.breadcrumb {
   font-size: 14px;
-  color: #777;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.breadcrumb a {
+  color: #667eea;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb .separator {
+  margin: 0 8px;
+  color: #999;
+}
+
+.breadcrumb .current {
+  color: #666;
+}
+
+/* ========================================
+   ヒーローセクション
+======================================== */
+.hero-section {
+  background: linear-gradient(135deg, #ff6f91 0%, #ff9671 100%);
+  color: #fff;
+  padding: 60px 30px;
+  border-radius: 16px;
+  text-align: center;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 24px rgba(255,111,145,0.3);
+}
+
+.hero-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 16px;
+}
+
+.hero-description {
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0;
+  opacity: 0.95;
+}
+
+/* ========================================
+   都道府県ページヘッダー
+======================================== */
+.prefecture-header {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+.prefecture-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  color: #333;
+}
+
+.prefecture-intro {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+  line-height: 1.8;
+}
+
+/* ========================================
+   セクション共通
+======================================== */
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #667eea;
+  color: #333;
+}
+
+.section-description {
+  font-size: 15px;
+  color: #666;
+  margin: 0 0 30px;
+}
+
+/* ========================================
+   SEOコンテンツ
+======================================== */
+.seo-contents,
+.top-seo-contents {
+  margin-bottom: 50px;
+}
+
+.seo-contents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.seo-content-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.seo-content-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.seo-content-thumb {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.seo-content-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.seo-content-body {
+  padding: 24px;
+}
+
+.seo-content-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: #333;
+}
+
+.seo-content-excerpt,
+.seo-content-full {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+.seo-content-full {
+  margin-bottom: 0;
+}
+
+.seo-content-full h3,
+.seo-content-full h4 {
+  margin-top: 20px;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.seo-content-full p {
+  margin-bottom: 12px;
+}
+
+.seo-content-full ul,
+.seo-content-full ol {
+  margin: 12px 0;
+  padding-left: 24px;
+}
+
+.read-more-btn {
+  display: inline-block;
+  padding: 8px 20px;
+  background: #667eea;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.read-more-btn:hover {
+  background: #5568d3;
+}
+
+/* ========================================
+   女性一覧
+======================================== */
+.girls-section {
+  margin-bottom: 50px;
 }
 
 .girls-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
 }
 
 .girl {
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.girl:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.girl-thumb {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  background: #f0f0f0;
 }
 
 .girl-thumb img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .girl-body {
-  padding: 14px 16px 16px;
+  padding: 20px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
 .girl-name {
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 700;
   margin: 0;
+  color: #333;
 }
 
 .girl-meta {
-  font-size: 13px;
+  font-size: 14px;
   color: #666;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 12px;
+  gap: 8px 16px;
 }
 
 .girl-meta span {
@@ -81,39 +329,311 @@ body {
 }
 
 .girl-meta-label {
-  font-size: 11px;
+  font-size: 12px;
   color: #999;
+  font-weight: 600;
 }
 
 .girl-comment {
-  font-size: 13px;
-  line-height: 1.6;
-  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #555;
+  margin: 0;
 }
 
 .girl-link {
-  margin-top: 8px;
+  margin-top: auto;
 }
 
 .girl-link a {
   display: inline-block;
-  font-size: 13px;
-  padding: 6px 10px;
+  font-size: 14px;
+  padding: 10px 24px;
   border-radius: 999px;
-  border: 1px solid #ff6f91;
-  color: #ff6f91;
+  background: linear-gradient(135deg, #ff6f91 0%, #ff9671 100%);
+  color: #fff;
   text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: opacity 0.2s ease;
+  font-weight: 600;
 }
 
 .girl-link a:hover {
-  background: #ff6f91;
+  opacity: 0.9;
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px;
+  background: #fff;
+  border-radius: 12px;
+  color: #999;
+  font-size: 15px;
+}
+
+/* ========================================
+   地域別都道府県一覧
+======================================== */
+.regions-section {
+  margin-bottom: 50px;
+}
+
+.regions-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.region-block {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.region-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  color: #667eea;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.prefecture-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.prefecture-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #f5f5f5;
+  color: #333;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.prefecture-link:hover {
+  background: #667eea;
   color: #fff;
 }
 
-.footer {
-  margin-top: 32px;
+.prefecture-count {
   font-size: 12px;
+  color: #999;
+  margin-left: 4px;
+}
+
+.prefecture-link:hover .prefecture-count {
+  color: rgba(255,255,255,0.8);
+}
+
+/* ========================================
+   他の都道府県へのリンク
+======================================== */
+.other-prefectures {
+  margin-bottom: 50px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* ========================================
+   特徴セクション
+======================================== */
+.features-section {
+  margin-bottom: 50px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.feature-card {
+  background: #fff;
+  padding: 30px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   text-align: center;
-  color: #aaa;
+  transition: transform 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+}
+
+.feature-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.feature-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: #333;
+}
+
+.feature-description {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666;
+  margin: 0;
+}
+
+/* ========================================
+   FAQ
+======================================== */
+.faq-section {
+  margin-bottom: 50px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.faq-question {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: #667eea;
+}
+
+.faq-answer {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #555;
+  margin: 0;
+}
+
+/* ========================================
+   フッター
+======================================== */
+.footer {
+  margin-top: 60px;
+  padding: 30px 0;
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* ========================================
+   レスポンシブ対応
+======================================== */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 30px 16px 20px;
+  }
+
+  .site-title {
+    font-size: 24px;
+  }
+
+  .site-description {
+    font-size: 13px;
+  }
+
+  .hero-section {
+    padding: 40px 20px;
+  }
+
+  .hero-title {
+    font-size: 26px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+  .prefecture-header {
+    padding: 30px 20px;
+  }
+
+  .prefecture-title {
+    font-size: 24px;
+  }
+
+  .prefecture-intro {
+    font-size: 14px;
+  }
+
+  .section-title {
+    font-size: 22px;
+  }
+
+  .seo-contents-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .girls-list {
+    grid-template-columns: 1fr;
+  }
+
+  .regions-container {
+    grid-template-columns: 1fr;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .region-block {
+    padding: 20px;
+  }
+
+  .other-prefectures {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    padding: 0 12px 30px;
+  }
+
+  .hero-section {
+    padding: 30px 16px;
+    border-radius: 12px;
+  }
+
+  .hero-title {
+    font-size: 22px;
+  }
+
+  .prefecture-header {
+    padding: 24px 16px;
+  }
+
+  .prefecture-title {
+    font-size: 20px;
+  }
+
+  .seo-content-body,
+  .girl-body {
+    padding: 16px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
 }
