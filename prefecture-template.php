@@ -39,23 +39,8 @@ $girls = mama_gen_get_girls_by_prefecture( $prefecture_name );
 // SEOコンテンツを取得
 $seo_contents = mama_gen_get_seo_contents_by_prefecture( $prefecture_slug );
 
-?><!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-<head>
-  <meta charset="<?php bloginfo('charset'); ?>">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo esc_html( $prefecture_name ); ?>の人妻出会い掲示板 | <?php bloginfo('name'); ?></title>
-  <meta name="description" content="<?php echo esc_attr( $prefecture_name ); ?>で人妻と出会える掲示板。地域の人妻の特徴や出会い方、おすすめスポットなどを紹介。">
-  <?php wp_head(); ?>
-</head>
-<body <?php body_class(); ?>>
-<div class="wrap">
-  <header class="site-header">
-    <h1 class="site-title">
-      <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo('name'); ?></a>
-    </h1>
-    <p class="site-description"><?php bloginfo('description'); ?></p>
-  </header>
+get_header();
+?>
 
   <!-- パンくずリスト -->
   <nav class="breadcrumb">
@@ -114,102 +99,79 @@ $seo_contents = mama_gen_get_seo_contents_by_prefecture( $prefecture_slug );
 
   <!-- 女性一覧セクション -->
   <?php if ( ! empty( $girls ) ) : ?>
-    <section class="girls-section">
-      <h2 class="section-title"><?php echo esc_html( $prefecture_name ); ?>の女性一覧（<?php echo count( $girls ); ?>名）</h2>
-      <div class="girls-list">
-        <?php foreach ( $girls as $girl ) :
-          // サムネイルURL
-          $thumb = '';
-          if ( ! empty( $girl->samune ) ) {
-            if ( strpos( $girl->samune, 'http' ) === 0 ) {
-              $thumb = esc_url( $girl->samune );
-            } else {
-              $thumb = esc_url( home_url( $girl->samune ) );
-            }
-          }
-        ?>
-        <article class="girl">
-          <?php if ( $thumb ) : ?>
-            <div class="girl-thumb">
-              <img src="<?php echo $thumb; ?>" alt="<?php echo esc_attr( $girl->name ); ?>">
-            </div>
-          <?php endif; ?>
-          <div class="girl-body">
-            <h3 class="girl-name"><?php echo esc_html( $girl->name ); ?></h3>
-
-            <div class="girl-meta">
-              <?php if ( $girl->age !== null && $girl->age !== '' ) : ?>
-                <span><span class="girl-meta-label">年齢</span><?php echo esc_html( $girl->age ); ?></span>
+    <section class="girls-list">
+      <h2 class="section-title"><?php echo esc_html( $prefecture_name ); ?>の女性一覧</h2>
+      <div class="girls-grid">
+        <?php foreach ( $girls as $girl ) : ?>
+          <article class="girl-card">
+            <?php if ( ! empty( $girl->image_url ) ) : ?>
+              <div class="girl-image">
+                <img src="<?php echo esc_url( $girl->image_url ); ?>" alt="<?php echo esc_attr( $girl->name ); ?>">
+              </div>
+            <?php endif; ?>
+            <div class="girl-info">
+              <h3 class="girl-name"><?php echo esc_html( $girl->name ); ?></h3>
+              <?php if ( ! empty( $girl->age ) ) : ?>
+                <p class="girl-age">年齢: <?php echo esc_html( $girl->age ); ?>歳</p>
               <?php endif; ?>
-              <?php if ( $girl->figure !== null && $girl->figure !== '' ) : ?>
-                <span><span class="girl-meta-label">体型</span><?php echo esc_html( $girl->figure ); ?></span>
+              <?php if ( ! empty( $girl->area ) ) : ?>
+                <p class="girl-area">エリア: <?php echo esc_html( $girl->area ); ?></p>
               <?php endif; ?>
-              <?php if ( $girl->character !== null && $girl->character !== '' ) : ?>
-                <span><span class="girl-meta-label">性格</span><?php echo esc_html( $girl->character ); ?></span>
+              <?php if ( ! empty( $girl->comment ) ) : ?>
+                <p class="girl-comment"><?php echo esc_html( wp_trim_words( $girl->comment, 30, '...' ) ); ?></p>
+              <?php endif; ?>
+              <?php if ( ! empty( $girl->profile_url ) ) : ?>
+                <a href="<?php echo esc_url( $girl->profile_url ); ?>" class="girl-link" target="_blank" rel="noopener">プロフィールを見る</a>
               <?php endif; ?>
             </div>
-
-            <?php if ( $girl->comment !== null && $girl->comment !== '' ) : ?>
-              <p class="girl-comment"><?php echo esc_html( $girl->comment ); ?></p>
-            <?php endif; ?>
-
-            <?php if ( $girl->url !== null && $girl->url !== '' ) : ?>
-              <p class="girl-link">
-                <a href="<?php echo esc_url( $girl->url ); ?>" target="_blank" rel="noopener">プロフィールを見る</a>
-              </p>
-            <?php endif; ?>
-          </div>
-        </article>
+          </article>
         <?php endforeach; ?>
       </div>
     </section>
   <?php else : ?>
-    <section class="girls-section">
-      <h2 class="section-title"><?php echo esc_html( $prefecture_name ); ?>の女性一覧</h2>
-      <p class="no-data">現在、<?php echo esc_html( $prefecture_name ); ?>の女性データはありません。</p>
+    <section class="no-girls">
+      <p>現在、<?php echo esc_html( $prefecture_name ); ?>の女性情報はありません。</p>
+      <p><a href="<?php echo esc_url( home_url( '/' ) ); ?>">トップページに戻る</a></p>
     </section>
   <?php endif; ?>
 
   <!-- 他の都道府県へのリンク -->
   <section class="other-prefectures">
-    <h2 class="section-title">他の都道府県を見る</h2>
-    <div class="prefecture-links">
+    <h2 class="section-title">他の都道府県から探す</h2>
+    <div class="prefecture-links-grid">
       <?php
-      $prefectures = mama_gen_get_prefectures();
-      foreach ( $prefectures as $pref ) :
+      $all_prefectures = mama_gen_get_prefectures();
+      $random_prefs = array_rand( array_flip( $all_prefectures ), min( 12, count( $all_prefectures ) ) );
+      if ( ! is_array( $random_prefs ) ) {
+        $random_prefs = array( $random_prefs );
+      }
+      foreach ( $random_prefs as $pref ) :
         if ( $pref === $prefecture_name ) continue;
         $pref_slug = mama_gen_prefecture_to_slug( $pref );
       ?>
-        <a href="<?php echo esc_url( home_url( '/prefecture/' . $pref_slug . '/' ) ); ?>" class="prefecture-link">
+        <a href="<?php echo esc_url( home_url( '/prefecture/' . $pref_slug . '/' ) ); ?>" class="prefecture-link-item">
           <?php echo esc_html( $pref ); ?>
         </a>
       <?php endforeach; ?>
     </div>
   </section>
 
-  <footer class="footer">
-    <p>&copy; <?php echo date( 'Y' ); ?> <?php bloginfo('name'); ?></p>
-  </footer>
-</div>
-
 <script>
-function toggleContent(btn) {
-  const card = btn.closest('.seo-content-card');
+function toggleContent(button) {
+  const card = button.closest('.seo-content-card');
   const excerpt = card.querySelector('.seo-content-excerpt');
   const full = card.querySelector('.seo-content-full');
   
   if (full.style.display === 'none') {
-    full.style.display = 'block';
     excerpt.style.display = 'none';
-    btn.textContent = '閉じる';
+    full.style.display = 'block';
+    button.textContent = '閉じる';
   } else {
-    full.style.display = 'none';
     excerpt.style.display = 'block';
-    btn.textContent = '続きを読む';
+    full.style.display = 'none';
+    button.textContent = '続きを読む';
   }
 }
 </script>
 
-<?php wp_footer(); ?>
-</body>
-</html>
+<?php get_footer(); ?>

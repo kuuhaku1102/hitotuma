@@ -7,11 +7,12 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-// CSS 読み込み
-function mama_gen_enqueue_styles() {
-    wp_enqueue_style( 'mama-gen-style', get_stylesheet_uri(), array(), '1.1' );
+// CSSとJavaScriptの読み込み
+function mama_gen_enqueue_scripts() {
+    wp_enqueue_style( 'mama-gen-style', get_stylesheet_uri(), array(), '1.2' );
+    wp_enqueue_script( 'mama-gen-menu', get_template_directory_uri() . '/js/menu.js', array(), '1.0', true );
 }
-add_action( 'wp_enqueue_scripts', 'mama_gen_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'mama_gen_enqueue_scripts' );
 
 // 管理画面カスタマイズを読み込む
 if ( is_admin() ) {
