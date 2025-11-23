@@ -33,108 +33,73 @@ if ( ! $prefecture_name ) {
     exit;
 }
 
-// 女性データを取得
+// 女性データを取得（全データからランダムに8-12件）
 $girls = mama_gen_get_girls_by_prefecture( $prefecture_name );
-
-// SEOコンテンツを取得
-$seo_contents = mama_gen_get_seo_contents_by_prefecture( $prefecture_slug );
 
 get_header();
 ?>
 
-  <!-- パンくずリスト -->
-  <nav class="breadcrumb">
-    <a href="<?php echo esc_url( home_url( '/' ) ); ?>">ホーム</a>
-    <span class="separator">›</span>
-    <span class="current"><?php echo esc_html( $prefecture_name ); ?></span>
-  </nav>
-
   <!-- ページタイトル -->
-  <div class="prefecture-header">
-    <h1 class="prefecture-title"><?php echo esc_html( $prefecture_name ); ?>の人妻出会い掲示板</h1>
-    <p class="prefecture-intro">
-      <?php echo esc_html( $prefecture_name ); ?>エリアで出会いを探している人妻の一覧です。
-      地域の特徴や出会い方のコツもご紹介しています。
-    </p>
-  </div>
-
-  <!-- SEOコンテンツセクション -->
-  <?php if ( $seo_contents->have_posts() ) : ?>
-    <section class="seo-contents">
-      <h2 class="section-title"><?php echo esc_html( $prefecture_name ); ?>の人妻出会い情報</h2>
-      <div class="seo-contents-grid">
-        <?php while ( $seo_contents->have_posts() ) : $seo_contents->the_post(); ?>
-          <article class="seo-content-card">
-            <?php if ( has_post_thumbnail() ) : ?>
-              <div class="seo-content-thumb">
-                <?php the_post_thumbnail( 'medium' ); ?>
-              </div>
-            <?php endif; ?>
-            <div class="seo-content-body">
-              <h3 class="seo-content-title"><?php the_title(); ?></h3>
-              <div class="seo-content-excerpt">
-                <?php 
-                $content = get_the_content();
-                $excerpt = wp_trim_words( $content, 50, '...' );
-                echo wp_kses_post( $excerpt );
-                ?>
-              </div>
-              <?php if ( strlen( get_the_content() ) > 200 ) : ?>
-                <button class="read-more-btn" onclick="toggleContent(this)">続きを読む</button>
-                <div class="seo-content-full" style="display: none;">
-                  <?php the_content(); ?>
-                </div>
-              <?php else : ?>
-                <div class="seo-content-full">
-                  <?php the_content(); ?>
-                </div>
-              <?php endif; ?>
-            </div>
-          </article>
-        <?php endwhile; ?>
-        <?php wp_reset_postdata(); ?>
-      </div>
-    </section>
-  <?php endif; ?>
-
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1 class="page-title"><?php echo esc_html( $prefecture_name ); ?>の人妻出会い掲示板</h1>
+      <p class="page-description">秘密の関係を求める既婚者が集まる、<?php echo esc_html( $prefecture_name ); ?>専用の出会いの場</p>
+    </div>
+  </section>
 
   <!-- 女性一覧セクション -->
   <?php if ( ! empty( $girls ) ) : ?>
     <section class="girls-list">
-      <h2 class="section-title"><?php echo esc_html( $prefecture_name ); ?>の女性一覧</h2>
-      <div class="girls-grid">
-        <?php foreach ( $girls as $girl ) : ?>
-          <article class="girl-card">
-            <?php if ( ! empty( $girl->image_url ) ) : ?>
-              <div class="girl-image">
-                <img src="<?php echo esc_url( $girl->image_url ); ?>" alt="<?php echo esc_attr( $girl->name ); ?>">
-              </div>
+      <?php foreach ( $girls as $girl ) :
+        // サムネイルURL（/images から始まるパス想定）
+        $thumb = '';
+        if ( ! empty( $girl->samune ) ) {
+          // samune が /images/〜 のようなパスの場合、サイトURLを前に付ける
+          if ( strpos( $girl->samune, 'http' ) === 0 ) {
+            $thumb = esc_url( $girl->samune );
+          } else {
+            $thumb = esc_url( home_url( $girl->samune ) );
+          }
+        }
+      ?>
+      <article class="girl">
+        <?php if ( $thumb ) : ?>
+          <div class="girl-thumb">
+            <img src="<?php echo $thumb; ?>" alt="<?php echo esc_attr( $girl->name ); ?>">
+          </div>
+        <?php endif; ?>
+        <div class="girl-body">
+          <h2 class="girl-name"><?php echo esc_html( $girl->name ); ?></h2>
+
+          <div class="girl-meta">
+            <?php if ( isset( $girl->age ) && $girl->age !== null && $girl->age !== '' ) : ?>
+              <span><span class="girl-meta-label">年齢</span><?php echo esc_html( $girl->age ); ?></span>
             <?php endif; ?>
-            <div class="girl-info">
-              <h3 class="girl-name"><?php echo esc_html( $girl->name ); ?></h3>
-              <?php if ( ! empty( $girl->age ) ) : ?>
-                <p class="girl-age">年齢: <?php echo esc_html( $girl->age ); ?>歳</p>
-              <?php endif; ?>
-              <?php if ( ! empty( $girl->area ) ) : ?>
-                <p class="girl-area">エリア: <?php echo esc_html( $girl->area ); ?></p>
-              <?php endif; ?>
-              <?php if ( ! empty( $girl->comment ) ) : ?>
-                <p class="girl-comment"><?php echo esc_html( wp_trim_words( $girl->comment, 30, '...' ) ); ?></p>
-              <?php endif; ?>
-              <?php if ( ! empty( $girl->profile_url ) ) : ?>
-                <a href="<?php echo esc_url( $girl->profile_url ); ?>" class="girl-link" target="_blank" rel="noopener">プロフィールを見る</a>
-              <?php endif; ?>
-            </div>
-          </article>
-        <?php endforeach; ?>
-      </div>
+            <?php if ( isset( $girl->figure ) && $girl->figure !== null && $girl->figure !== '' ) : ?>
+              <span><span class="girl-meta-label">体型</span><?php echo esc_html( $girl->figure ); ?></span>
+            <?php endif; ?>
+            <?php if ( isset( $girl->character ) && $girl->character !== null && $girl->character !== '' ) : ?>
+              <span><span class="girl-meta-label">性格</span><?php echo esc_html( $girl->character ); ?></span>
+            <?php endif; ?>
+          </div>
+
+          <?php if ( isset( $girl->comment ) && $girl->comment !== null && $girl->comment !== '' ) : ?>
+            <p class="girl-comment"><?php echo esc_html( $girl->comment ); ?></p>
+          <?php endif; ?>
+
+          <?php if ( isset( $girl->url ) && $girl->url !== null && $girl->url !== '' ) : ?>
+            <p class="girl-link">
+              <a href="<?php echo esc_url( $girl->url ); ?>" target="_blank" rel="noopener">プロフィールを見る</a>
+            </p>
+          <?php endif; ?>
+        </div>
+      </article>
+      <?php endforeach; ?>
     </section>
   <?php else : ?>
-    <section class="no-girls">
-      <p>現在、<?php echo esc_html( $prefecture_name ); ?>の女性情報はありません。</p>
-      <p><a href="<?php echo esc_url( home_url( '/' ) ); ?>">トップページに戻る</a></p>
-    </section>
+    <p class="no-data-message">表示できるデータがありません。</p>
   <?php endif; ?>
+
   <!-- 都道府県別SEOコンテンツ -->
   <section class="prefecture-seo-content">
     <h2 class="prefecture-seo-title">💕 <?php echo esc_html( $prefecture_name ); ?>で人妻と出会いたい男性へ</h2>
@@ -243,44 +208,5 @@ get_header();
       あなたのペースでやり取りを始めてみてください。</p>
     </div>
   </section>
-
-  <!-- 他の都道府県へのリンク -->
-  <section class="other-prefectures">
-    <h2 class="section-title">他の都道府県から探す</h2>
-    <div class="prefecture-links-grid">
-      <?php
-      $all_prefectures = mama_gen_get_prefectures();
-      $random_prefs = array_rand( array_flip( $all_prefectures ), min( 12, count( $all_prefectures ) ) );
-      if ( ! is_array( $random_prefs ) ) {
-        $random_prefs = array( $random_prefs );
-      }
-      foreach ( $random_prefs as $pref ) :
-        if ( $pref === $prefecture_name ) continue;
-        $pref_slug = mama_gen_prefecture_to_slug( $pref );
-      ?>
-        <a href="<?php echo esc_url( home_url( '/prefecture/' . $pref_slug . '/' ) ); ?>" class="prefecture-link-item">
-          <?php echo esc_html( $pref ); ?>
-        </a>
-      <?php endforeach; ?>
-    </div>
-  </section>
-
-<script>
-function toggleContent(button) {
-  const card = button.closest('.seo-content-card');
-  const excerpt = card.querySelector('.seo-content-excerpt');
-  const full = card.querySelector('.seo-content-full');
-  
-  if (full.style.display === 'none') {
-    excerpt.style.display = 'none';
-    full.style.display = 'block';
-    button.textContent = '閉じる';
-  } else {
-    excerpt.style.display = 'block';
-    full.style.display = 'none';
-    button.textContent = '続きを読む';
-  }
-}
-</script>
 
 <?php get_footer(); ?>
