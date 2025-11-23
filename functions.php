@@ -189,13 +189,32 @@ add_filter( 'template_include', 'mama_gen_template_include' );
 function mama_gen_add_blog_rewrite_rules() {
     add_rewrite_rule(
         '^blog/?$',
-        'index.php?post_type=post',
+        'index.php?is_blog_page=1',
         'top'
     );
     add_rewrite_rule(
         '^blog/page/([0-9]{1,})/?$',
-        'index.php?post_type=post&paged=$matches[1]',
+        'index.php?is_blog_page=1&paged=$matches[1]',
         'top'
     );
 }
 add_action( 'init', 'mama_gen_add_blog_rewrite_rules' );
+
+// クエリ変数にis_blog_pageを追加
+function mama_gen_add_blog_query_vars( $vars ) {
+    $vars[] = 'is_blog_page';
+    return $vars;
+}
+add_filter( 'query_vars', 'mama_gen_add_blog_query_vars' );
+
+// ブログページのテンプレートを指定
+function mama_gen_blog_template_include( $template ) {
+    if ( get_query_var( 'is_blog_page' ) ) {
+        $new_template = locate_template( array( 'home.php' ) );
+        if ( $new_template ) {
+            return $new_template;
+        }
+    }
+    return $template;
+}
+add_filter( 'template_include', 'mama_gen_blog_template_include', 99 );
