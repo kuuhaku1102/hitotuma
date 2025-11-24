@@ -5,7 +5,10 @@ on:
     # 毎日午前10時（日本時間 ）に実行（UTCでは午前1時）
     - cron: '0 1 * * *'
   workflow_dispatch:  # 手動実行も可能
-
+# GitHub Actionsに書き込み権限を付与
+permissions:
+  contents: write
+  
 jobs:
   auto-post:
     runs-on: ubuntu-latest
