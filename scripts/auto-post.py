@@ -62,9 +62,13 @@ def main():
         print("=" * 50)
         print(f"記事タイトル: {article_data['title']}")
         print(f"キーワード: {article_data['main_keyword']} × {article_data['sub_keyword']} × {article_data['article_type']}")
-        print(f"文字数: {article_data['word_count']}文字")
+        # 文字数を計算
+        word_count = len(article_data.get('content', ''))
+        print(f"文字数: {word_count}文字")
         if 'post_id' in article_data:
             print(f"投稿ID: {article_data['post_id']}")
+        if 'post_url' in article_data:
+            print(f"記事URL: {article_data['post_url']}")
         print("=" * 50)
         
         return 0
