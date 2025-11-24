@@ -65,8 +65,6 @@
             <?php endforeach; ?>
           </ul>
         </li>
-        
-        <li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">サイトについて</a></li>
       </ul>
     </nav>
   </div>
