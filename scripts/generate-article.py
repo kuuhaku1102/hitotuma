@@ -28,29 +28,51 @@ client = OpenAI()
 
 def generate_article_with_ai(prompt, model="gpt-4.1-mini"):
     """OpenAI APIを使用して記事を生成"""
-    try:
-        response = client.chat.completions.create(
-            model=model,
-            messages=[
-                {
-                    "role": "system",
-                    "content": "あなたは経験豊富なSEOライターです。読者に価値を提供する高品質な記事を作成します。"
-                },
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ],
-            temperature=0.7,
-            max_tokens=4000
-        )
-        
-        content = response.choices[0].message.content
-        return content
+    import time
     
-    except Exception as e:
-        print(f"エラー: AI記事生成に失敗しました - {str(e)}", file=sys.stderr)
-        sys.exit(1)
+    max_retries = 3
+    retry_delay = 5
+    
+    for attempt in range(max_retries):
+        try:
+            print(f"  API呼び出し試行 {attempt + 1}/{max_retries}...", file=sys.stderr)
+            
+            response = client.chat.completions.create(
+                model=model,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "あなたは経験豊富なSEOライターです。読者に価値を提供する高品質な記事を作成します。"
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                temperature=0.7,
+                max_tokens=4000,
+                timeout=60.0
+            )
+            
+            content = response.choices[0].message.content
+            print(f"  API呼び出し成功", file=sys.stderr)
+            return content
+        
+        except Exception as e:
+            error_msg = str(e)
+            print(f"  エラー ({attempt + 1}/{max_retries}): {error_msg}", file=sys.stderr)
+            
+            if attempt < max_retries - 1:
+                print(f"  {retry_delay}秒後に再試行します...", file=sys.stderr)
+                time.sleep(retry_delay)
+            else:
+                print(f"\nエラー: AI記事生成に失敗しました - {error_msg}", file=sys.stderr)
+                print(f"\nデバッグ情報:", file=sys.stderr)
+                print(f"  OPENAI_API_KEYの長さ: {len(os.getenv('OPENAI_API_KEY', ''))}", file=sys.stderr)
+                print(f"  使用モデル: {model}", file=sys.stderr)
+                import traceback
+                traceback.print_exc()
+                sys.exit(1)
 
 def save_article(title, content, combination):
     """生成した記事をJSONファイルとして保存"""
