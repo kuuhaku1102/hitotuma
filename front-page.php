@@ -30,6 +30,28 @@ $regions = array(
 );
 ?>
 
+  <!-- 地域別都道府県一覧 -->
+  <section class="regions-section">
+    <h2 class="section-title">地域から探す</h2>
+    <p class="section-description">お住まいの地域を選択して、近くの人妻を探しましょう。</p>
+    
+    <div class="regions-container">
+      <?php foreach ( $regions as $region_name => $region_prefs ) : ?>
+        <div class="region-block">
+          <h3 class="region-title"><?php echo esc_html( $region_name ); ?></h3>
+          <div class="prefecture-links">
+            <?php foreach ( $region_prefs as $pref ) :
+              $pref_slug = mama_gen_prefecture_to_slug( $pref );
+            ?>
+              <a href="<?php echo esc_url( home_url( '/prefecture/' . $pref_slug . '/' ) ); ?>" class="prefecture-link">
+                <?php echo esc_html( $pref ); ?>
+              </a>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </section>
   <!-- メインビジュアル・キャッチコピー -->
   <section class="hero-section">
     <div class="hero-content">
@@ -187,28 +209,6 @@ $regions = array(
     </article>
   </section>
 
-  <!-- 地域別都道府県一覧 -->
-  <section class="regions-section">
-    <h2 class="section-title">地域から探す</h2>
-    <p class="section-description">お住まいの地域を選択して、近くの人妻を探しましょう。</p>
-    
-    <div class="regions-container">
-      <?php foreach ( $regions as $region_name => $region_prefs ) : ?>
-        <div class="region-block">
-          <h3 class="region-title"><?php echo esc_html( $region_name ); ?></h3>
-          <div class="prefecture-links">
-            <?php foreach ( $region_prefs as $pref ) :
-              $pref_slug = mama_gen_prefecture_to_slug( $pref );
-            ?>
-              <a href="<?php echo esc_url( home_url( '/prefecture/' . $pref_slug . '/' ) ); ?>" class="prefecture-link">
-                <?php echo esc_html( $pref ); ?>
-              </a>
-            <?php endforeach; ?>
-          </div>
-        </div>
-      <?php endforeach; ?>
-    </div>
-  </section>
 
   <!-- 特徴・メリットセクション -->
   <section class="features-section">
